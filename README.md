@@ -52,7 +52,7 @@
 加入LINE官方帳號，使用者對話將由 ChatGPT-3.5-tubo回應(LINE自動回應須關閉)。
 
 ## 配置環境
-1. 配置 `.env` 文件中的資料庫信息和其他環境變量:
+1. 配置 `.env` 環境變量:
     ```plaintext
     LINE_CHANNEL_ACCESS_TOKEN=LINE Channel Access Token
     LINE_CHANNEL_SECRET=LINE Channel Secret
@@ -69,7 +69,6 @@
 
 
 ## 使用方法測試
-1. 在 LINE Developer 中 webhook URL，例如 `http://xxxxxxxx.ngrok.io/api/webhook`。
-2. 在 LINE 應用中加入帳號，開始與機器人互動測試。
+1. 在 LINE 應用中加入帳號，開始與機器人互動測試。
 
 
