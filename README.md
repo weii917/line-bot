@@ -1,66 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# LINE Bot
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+這是一個基於貓旅購物網。整合了 LINE Bot 與 OpenAI API，實現回覆訊息的功能。目前這個專案在 LINE 上加入帳號進行測試，並使用 ngrok 來進行伺服器連線。
 
-## About Laravel
+## 目錄
+- [專案介紹](#專案介紹)
+- [功能特性](#功能特性)
+- [系統需求](#系統需求)
+- [安裝步驟](#安裝步驟)
+- [如何使用](#如何使用)
+- [配置環境](#配置環境)
+- [ngrok](#ngrok)
+- [使用方法測試](#使用方法測試)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 專案介紹
+用戶可以通過網站訂購貓咪旅館的房間，還可以購買各種貓咪相關的商品。新增了 LINE Bot 功能，用戶可以通過 LINE 機器人瞭解相關資訊。我們使用 OpenAI 的 API ，提供智能化的客服體驗。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 功能特性
+- LINE Bot 整合
+- 回覆訊息 (OpenAI API)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## 系統需求
+- PHP
+- Laravel
+- Composer
+- ngrok
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 安裝步驟
+1.  git clone my-project
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2.  cd my-project
+    
+3.  composer install
+   
+4.  cp .env.example .env
+    
+5.  php artisan key:generate
+  
+6.  php artisan serve
+    open http://localhost:8000
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 如何使用?
+1. 註冊平台：包括 GitHub、ngrok、OpenAI API、LINE Developers。
 
-## Laravel Sponsors
+2. 取得 OpenAI API token
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. 建立 LINE Developer Channel，並取得 Channel Secret 、 Channel Access Token
 
-### Premium Partners
+4. 綁定在 LINE Channel Webhook (ngrok的專案網址/webhook)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+加入LINE官方帳號，使用者對話將由 ChatGPT-3.5-tubo回應(LINE自動回應須關閉)。
 
-## Contributing
+## 配置環境
+1. 配置 `.env` 文件中的資料庫信息和其他環境變量:
+    ```plaintext
+    LINE_CHANNEL_ACCESS_TOKEN=LINE Channel Access Token
+    LINE_CHANNEL_SECRET=LINE Channel Secret
+    OPENAI_API_KEY=OpenAI API Key
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ngrok
+1. 下載並安裝 ngrok: [ngrok 官網](https://ngrok.com/)
+2. 啟動 ngrok 並建立 HTTP :
+    ```bash
+    ngrok http 8000
+    ```
+3. 將生成的 ngrok URL 配置到 LINE Developer 中 Webhook URL 。
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 使用方法測試
+1. 在 LINE Developer 中 webhook URL，例如 `http://xxxxxxxx.ngrok.io/api/webhook`。
+2. 在 LINE 應用中加入帳號，開始與機器人互動測試。
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
